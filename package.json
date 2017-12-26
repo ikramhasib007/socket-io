@@ -1,0 +1,26 @@
+{
+  "name": "socket-io",
+  "version": "1.0.0",
+  "description": "NodeJS application with socket.io",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "test": "testIt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ikramhasib007/socket-io.git"
+  },
+  "engines": {
+    "node": "6.11.1"
+  },
+  "author": "Ikram Hasib",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ikramhasib007/socket-io/issues"
+  },
+  "homepage": "https://github.com/ikramhasib007/socket-io#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
