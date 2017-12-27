@@ -17,29 +17,14 @@ app.use(express.static(publicPath));
 io.on('connection', (socket) => {
 	console.log('New user connected.');
 
-	// send data from server to the client
-	socket.emit('newEmail', {
-		from: 'ikramhasib007@gmail.com',
-		text: 'Hey, What is going on.',
-		createdAt: 123
-	});
-
-	socket.on('createEmail', (newEmail) => {
-		console.log('Create email', newEmail);
-	});
-
-
-	//self practices
-	// server send a new message to the client
-	socket.emit('newMessage', {
-		from: 'server@gmail.com',
-		text: 'Text messages',
-		createdAt: 13456
-	});
-
 	// server received new message from the client
-	socket.on('createMessage', (newMessage) => {
-		console.log('New message', newMessage);
+	socket.on('createMessage', (message) => {
+		console.log('New message', message);
+		io.emit('newMessage', {
+			from: message.from,
+			text: message.text,
+			createdAt: new Date().getTime()
+		});
 	});
 
 	socket.on('disconnect', () => {
