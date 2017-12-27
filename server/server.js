@@ -26,6 +26,26 @@ io.on('connection', (socket) => {
 	    console.log(data);
 	});
 
+	// getting bios information
+	si.bios(function(data){
+		socket.emit('biosInformation', data);
+	});
+
+	// getting baseboard information
+	si.baseboard(function(data){
+		socket.emit('baseboardInformation', data);
+	});
+
+	// getting cpuTemperature information
+	si.cpuTemperature(function(data){
+		socket.emit('cpuTemperatureInformation', data);
+	});
+
+	// getting mem information
+	si.mem(function(data){
+		socket.emit('memInformation', data);
+	});
+
 
 	//socket.emit from admin text Welcome to the chat app
 	socket.emit('newMessage', {
