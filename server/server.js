@@ -1,6 +1,7 @@
 /* jshint esversion: 6 */
 const path = require('path');
 const http = require('http');
+const si = require('systeminformation');
 
 const express = require('express');
 const socketIO = require('socket.io');
@@ -14,8 +15,16 @@ var io = socketIO(server);
 
 app.use(express.static(publicPath));
 
+
 io.on('connection', (socket) => {
 	console.log('New user connected.');
+
+	// getting cpu information
+	si.cpu(function(data) {
+		socket.emit('cpuInformation', data);
+	    console.log('CPU-Information:');
+	    console.log(data);
+	});
 
 
 	//socket.emit from admin text Welcome to the chat app
