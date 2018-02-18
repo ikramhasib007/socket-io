@@ -6,25 +6,25 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Heroku crafting app</title>
 	<link rel="shortcut icon" type="image/png" href="./bower_components/bootstrap-4.0.0/assets/brand/bootstrap-social-logo.png">
-	<link rel="stylesheet" href="./bower_components/bootstrap-4.0.0/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./bower_components/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="./bower_components/ladda/dist/ladda-themeless.min.css">
 	<!-- <link rel="stylesheet" href="./bower_components/fontawesome/svg-with-js/css/fa-svg-with-js.css"> -->
 	<link rel="stylesheet" href="./bower_components/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css">
+	<link rel="stylesheet" href="./bower_components/custom/css/style.css">
 
 	<!-- <script type="text/javascript" src="./bower_components/fontawesome/svg-with-js/js/fontawesome.min.js"></script> -->
 	<script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
 </head>
 <body ng-cloak>
 
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-	  <a class="navbar-brand" href="#"><img src="./bower_components/bootstrap-4.0.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-	    Bootstrap
-	  </a>
-	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	  <a class="navbar-brand" href="#">Navbar</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
-	  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-	    <ul class="navbar-nav">
+
+	  <div class="collapse navbar-collapse" id="navbarColor01">
+	    <ul class="navbar-nav mr-auto">
 	      <li class="nav-item active">
 	        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
 	      </li>
@@ -34,20 +34,26 @@
 	      <li class="nav-item">
 	        <a class="nav-link" href="#">Pricing</a>
 	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">About</a>
+	      </li>
 	    </ul>
+
+		<fb:login-button 
+		  id="fb-login"
+		  scope="public_profile,email,user_birthday,user_location"
+		  onlogin="checkLoginState();">
+		</fb:login-button>
+		
+
+		<button id="logout" onclick="logout()" class="btn btn-secondary my-2 my-sm-0" type="button">Logout</button>
+	    <!-- <form class="form-inline my-2 my-lg-0">
+	      <input class="form-control mr-sm-2" placeholder="Search..." type="text">
+	      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+	    </form> -->
 	  </div>
 	</nav>
 
-
-	<!-- <div class="jumbotron jumbotron-fluid">
-	  <div class="container">
-	    <h1 class="display-4">Welcome</h1>
-	    <p class="lead">This is a AngularJS 1x app.</p>
-	  </div>
-	</div> -->
-	<!-- <div class="card card-body bg-light">
-        <h2>ngResource</h2>
-    </div> -->
 	<div class="container" style="margin-bottom: 15px; margin-top: 15px;">
 		<div class="row">
 			
@@ -59,7 +65,7 @@
 							placeholder="Search..." 
 						>
 				</div>
-				<table class="table table-bordered table-sm table-hover">
+				<table class="table table-bordered table-hover">
 					<thead>
 						<tr>
 							<th>#</th>
@@ -87,29 +93,108 @@
 				</table>
 			</div>
 			<div class="col-md-4" ng-controller="personDetailController" >
-				<div class="card">
+				<div class="card mb-3">
+				  <div class="card-header">Person details</div>
 				  <div class="card-body">
-				    <h5 class="card-title">Person details</h5>
 				    <dl>
-					<dt>Firstname</dt>
-					<dd>{{ contacts.selectedPerson.first_name }}</dd>
-					<dt>Lastname</dt>
-					<dd>{{ contacts.selectedPerson.last_name }}</dd>
-					<dt>Gender</dt>
-					<dd>{{ contacts.selectedPerson.gender }}</dd>
-					<dt>Email</dt>
-					<dd>{{ contacts.selectedPerson.email }}</dd>
-					<dt>IP Address</dt>
-					<dd>{{ contacts.selectedPerson.ip_address }}</dd>
-					<dt>Birthdate</dt>
-					<dd>{{ contacts.selectedPerson.birthdate }}</dd>
-				</dl>
+						<dt>Firstname</dt>
+						<dd>{{ contacts.selectedPerson.first_name }}</dd>
+						<dt>Lastname</dt>
+						<dd>{{ contacts.selectedPerson.last_name }}</dd>
+						<dt>Gender</dt>
+						<dd>{{ contacts.selectedPerson.gender }}</dd>
+						<dt>Email</dt>
+						<dd>{{ contacts.selectedPerson.email }}</dd>
+						<dt>IP Address</dt>
+						<dd>{{ contacts.selectedPerson.ip_address }}</dd>
+						<dt>Birthdate</dt>
+						<dd>{{ contacts.selectedPerson.birthdate }}</dd>
+					</dl>
 				  </div>
-				</div>				
+				</div>
+								
 			</div>
 		</div>
 		
 	</div>
+
+	<!-- Facebook SDK -->
+		<script>
+		  window.fbAsyncInit = function() {
+		    FB.init({
+		      appId      : '2070491186328377',
+		      cookie     : true,
+		      xfbml      : true,
+		      version    : 'v2.12'
+		    });
+		      
+		    //FB.AppEvents.logPageView();   
+
+			FB.getLoginStatus(function(response) {
+			    statusChangeCallback(response);
+			});
+		      
+		  };
+		  
+
+		  (function(d, s, id){
+		     var js, fjs = d.getElementsByTagName(s)[0];
+		     if (d.getElementById(id)) {return;}
+		     js = d.createElement(s); js.id = id;
+		     js.src = "https://connect.facebook.net/en_US/sdk.js";
+		     fjs.parentNode.insertBefore(js, fjs);
+		   }(document, 'script', 'facebook-jssdk'));
+
+			function statusChangeCallback(response){
+				if(response.status === 'connected'){
+					console.log('logged in and authenticated.');
+					console.log(response);
+					setElements(true);
+					testApi();
+					friends();
+				}
+				else {
+					setElements(false);
+					console.log('not authenticated.');
+				}
+			}
+
+
+			function checkLoginState() {
+			  FB.getLoginStatus(function(response) {
+			    statusChangeCallback(response);
+			  });
+			}
+
+			function setElements(isLoggedIn){
+				if(isLoggedIn){
+					document.getElementById('logout').style.display = 'block';
+					document.getElementById('fb-login').style.display = 'none';
+				} else {
+					document.getElementById('logout').style.display = 'none';
+					document.getElementById('fb-login').style.display = 'block';
+				}
+			}
+
+			function logout(){
+				FB.logout(function(response){
+					setElements(false);
+				});
+			}
+
+			function testApi(){
+				FB.api('me?fields=name,email,birthday,location', function(response){
+					console.log(response);
+				});
+			}
+
+			function friends(){
+				FB.api('me/friends', function(response){
+					console.log(response);
+				});
+			}
+		</script>
+	<!-- /Facebook SDK -->
 
 
 
