@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Node with Socket.io</title>
+	<link rel="stylesheet" href="/bower_components/bootstrap-4.0.0-beta.2/css/bootstrap.min.css">
+</head>
+<body>
+	<nav class="navbar navbar-light bg-light">
+	  <span class="navbar-brand mb-0 h1">Navbar</span>
+	</nav>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				
+				<div class="jumbotron">
+				  <h1 class="display-3">App will update soon...</h1>
+				  <p class="lead">Welcome to the node JS app with socket.io</p>
+				  <hr class="my-4">
+				  <p class="lead">
+				    <a id="cpuInfoBtn" class="btn btn-primary btn-lg" data-toggle="modal" data-target=".bd-example-modal-lg" href="#" role="button">CPU Information</a>
+				    <a id="biosInfoBtn" class="btn btn-primary btn-lg" data-toggle="modal" data-target=".bd-example-modal-lg" href="#" role="button">BIOS Information</a>
+				    <a id="baseboardInfoBtn" class="btn btn-primary btn-lg" data-toggle="modal" data-target=".bd-example-modal-lg" href="#" role="button">Baseboard Information</a>
+				    <a id="cpuTemperatureInfoBtn" class="btn btn-primary btn-lg" data-toggle="modal" data-target=".bd-example-modal-lg" href="#" role="button">CPU Temperature</a>
+				    <a id="memInfoBtn" class="btn btn-primary btn-lg" data-toggle="modal" data-target=".bd-example-modal-lg" href="#" role="button">Memory Information</a>
+				  </p>
+				</div>
+			</div>
+		</div>
+
+		<!-- modal -->
+		<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-lg">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Information</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body" style="margin-bottom: 0;">
+		        <!-- <table class="table table-bordered">
+				  <thead>
+				    <tr>
+				      <th scope="col">#</th>
+				      <th scope="col">First Name</th>
+				      <th scope="col">Last Name</th>
+				      <th scope="col">Username</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <th scope="row">1</th>
+				      <td>Mark</td>
+				      <td>Otto</td>
+				      <td>@mdo</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">2</th>
+				      <td>Mark</td>
+				      <td>Otto</td>
+				      <td>@TwBootstrap</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">3</th>
+				      <td>Jacob</td>
+				      <td>Thornton</td>
+				      <td>@fat</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">4</th>
+				      <td colspan="2">Larry the Bird</td>
+				      <td>@twitter</td>
+				    </tr>
+				  </tbody>
+				</table> -->
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary">Send message</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</div>
+
+
+
+	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+	<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="/bower_components/bootstrap-4.0.0-beta.2/js/popper.min.js"></script>
+	<script src="/bower_components/bootstrap-4.0.0-beta.2/js/bootstrap.min.js"></script>
+
+	<script src="/js/index.js"></script>
+</body>
+</html>
