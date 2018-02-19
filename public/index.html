@@ -14,10 +14,26 @@
 
 	<!-- <script type="text/javascript" src="./bower_components/fontawesome/svg-with-js/js/fontawesome.min.js"></script> -->
 	<script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
+	<style type="text/css" media="screen">
+		#login-box {
+			/*display: none;*/
+			-webkit-appearance: none;
+		    -moz-appearance: none;
+			appearance: none;
+			outline: 0;
+		}
+		
+	</style>
 </head>
 <body ng-cloak>
+	<div class="jumbotron" id="login-box" style="margin-bottom: 0px; position: absolute; top: -100px; padding: 1rem 2rem;">
+	  <div id="fb-root" class="text-center">
+		<div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
+	  	
+	  </div>
+	</div>
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	<nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-primary">
 	  <a class="navbar-brand" href="#">Navbar</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
@@ -38,15 +54,18 @@
 	        <a class="nav-link" href="#">About</a>
 	      </li>
 	    </ul>
+	    <button type="button" id="login-btn" class="btn btn-primary">Login</button>
 
-		<fb:login-button 
+		<!-- <fb:login-button 
 		  id="fb-login"
 		  scope="public_profile,email,user_birthday,user_location"
 		  onlogin="checkLoginState();">
-		</fb:login-button>
+		</fb:login-button> -->
+		<!-- <div id="fb-root"></div>
+		<div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false"></div> -->
 		
 
-		<button id="logout" onclick="logout()" class="btn btn-secondary my-2 my-sm-0" type="button">Logout</button>
+		<!-- <button id="logout" onclick="logout()" class="btn btn-secondary my-2 my-sm-0" type="button">Logout</button> -->
 	    <!-- <form class="form-inline my-2 my-lg-0">
 	      <input class="form-control mr-sm-2" placeholder="Search..." type="text">
 	      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
@@ -170,6 +189,11 @@
 				if(isLoggedIn){
 					document.getElementById('logout').style.display = 'block';
 					document.getElementById('fb-login').style.display = 'none';
+
+					document.getElementById('login-box').style.position = 'absolute';
+					document.getElementById('login-box').style.transition = 'all .5s';
+					document.getElementById('login-box').style.top = '-100px';		
+
 				} else {
 					document.getElementById('logout').style.display = 'none';
 					document.getElementById('fb-login').style.display = 'block';
@@ -208,6 +232,13 @@
 	<script type="text/javascript" src="./bower_components/angular-resource/angular-resource.min.js"></script>
 	<!-- <script type="text/javascript" src="./js/myscript.js"></script> -->
 	<script type="text/javascript">
+		document.getElementById("login-btn").addEventListener('click', function(){
+			document.getElementById('login-box').style.position = 'relative';
+			document.getElementById('login-box').style.transition = 'all .5s';
+			document.getElementById('login-box').style.top = '0';			
+			document.getElementById('navbar').style.transition = 'all .5s'
+		});
+
 		var app = angular.module('myApp', [
 				'ngResource'
 			]);
