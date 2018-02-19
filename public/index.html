@@ -55,6 +55,7 @@
 	      </li>
 	    </ul>
 	    <button type="button" id="login-btn" class="btn btn-primary">Login</button>
+	    <button type="button" style="display: none;" id="logout-btn" onclick="logout()" class="btn btn-primary">Logout</button>
 
 		<!-- <fb:login-button 
 		  id="fb-login"
@@ -187,16 +188,16 @@
 
 			function setElements(isLoggedIn){
 				if(isLoggedIn){
-					document.getElementById('logout').style.display = 'block';
-					document.getElementById('fb-login').style.display = 'none';
-
+					document.getElementById('login-btn').style.display = 'none';
+					document.getElementById('logout-btn').style.display = 'block';
+					
 					document.getElementById('login-box').style.position = 'absolute';
 					document.getElementById('login-box').style.transition = 'all .5s';
 					document.getElementById('login-box').style.top = '-100px';		
 
 				} else {
-					document.getElementById('logout').style.display = 'none';
-					document.getElementById('fb-login').style.display = 'block';
+					document.getElementById('login-btn').style.display = 'block';
+					document.getElementById('logout-btn').style.display = 'none';
 				}
 			}
 
